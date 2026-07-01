@@ -2,6 +2,10 @@
 name = "whisper-ai"
 version = "0.1.0"
 edition = "2021"
+description = "Whisper speech-to-text (Wyoming/ASR) — orca service-backend"
+
+[package.metadata.orca]
+category = "ai"
 
 [lib]
 name = "whisper_ai"
