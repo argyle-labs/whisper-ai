@@ -14,7 +14,7 @@ This repo is **self-contained** — the steps below run whisper-ai **by hand, wi
 
 ## Run it without orca
 
-### Docker / Podman
+### Docker Compose
 
 ```yaml
 # compose.yml
@@ -33,7 +33,22 @@ services:
 docker compose up -d
 ```
 
-Podman: the same file with `podman-compose up -d`.
+### Other runtimes
+
+**Podman** — the compose above works with `podman compose up -d`, or run it directly:
+
+```sh
+podman run -d --name whisper-ai --restart unless-stopped \
+    -p 9000:9000/tcp \
+    -v ./cache:/root/.cache \
+    onerahmet/openai-whisper-asr-webservice:latest
+```
+
+**LXC** — on a container-capable LXC (e.g. a Proxmox LXC with nesting enabled) run the same image via Docker/Podman as above, or install whisper-ai from upstream directly on the guest: <https://github.com/ahmetoner/whisper-asr-webservice>.
+
+**VM** — install whisper-ai from upstream (<https://github.com/ahmetoner/whisper-asr-webservice>) or run the same container image inside the VM; expose port `9000`.
+
+**Unraid** — add via *Community Applications*, or *Docker → Add Container* with image `onerahmet/openai-whisper-asr-webservice:latest`, port `9000`, and the volume paths above.
 
 ### Ports & data
 
