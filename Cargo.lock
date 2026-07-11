@@ -1888,7 +1888,6 @@ dependencies = [
  "derive",
  "dispatch",
  "futures-core",
- "futures-executor",
  "futures-util",
  "graphql",
  "graphql_client",
@@ -3345,7 +3344,6 @@ dependencies = [
 name = "whisper-ai"
 version = "0.1.0"
 dependencies = [
- "abi_stable",
  "plugin-toolkit",
  "tempfile",
  "tokio",
