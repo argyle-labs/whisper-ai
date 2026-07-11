@@ -3345,7 +3345,6 @@ dependencies = [
 name = "whisper-ai"
 version = "0.1.0"
 dependencies = [
- "abi_stable",
  "plugin-toolkit",
  "tempfile",
  "tokio",
