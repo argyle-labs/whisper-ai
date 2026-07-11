@@ -1,0 +1,26 @@
+# Whisper ASR — OpenAI Whisper speech-to-text web service.
+# docs: docs/whisper-ai.md
+#
+# Serves the ASR API on :9000 (mapped to :10300 on the host here).
+# Uses the GPU image; uncomment the GPU block for NVIDIA acceleration.
+services:
+  whisper-ai:
+    image: onerahmet/openai-whisper-asr-webservice:latest-gpu
+    container_name: whisper-ai
+    restart: unless-stopped
+    ports:
+      - "${WHISPER_PORT:-10300}:9000"
+    environment:
+      - ASR_MODEL=${ASR_MODEL:-base}
+      - ASR_ENGINE=${ASR_ENGINE:-openai_whisper}
+      - TZ=${TZ:-America/Denver}
+    volumes:
+      - ${WHISPER_CACHE:-./cache}:/root/.cache
+    # GPU (NVIDIA) — requires the nvidia container runtime on the host.
+    # deploy:
+    #   resources:
+    #     reservations:
+    #       devices:
+    #         - driver: nvidia
+    #           count: all
+    #           capabilities: [gpu]
