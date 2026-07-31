@@ -12,6 +12,21 @@
     </pattern>
   </defs>
   <g clip-path="url(#tile)"><rect x="16" y="16" width="480" height="480" fill="url(#argyle)"/></g>
-  <rect x="16" y="16" width="480" height="480" rx="108" fill="none" stroke="#2BD3D3" stroke-width="6"/>
-  <g fill="none" stroke="#10A37F" stroke-width="22" stroke-linecap="round"><rect x="222" y="150" width="68" height="120" rx="34" fill="#10A37F" stroke="none"/><path d="M186 250 a70 70 0 0 0 140 0 M256 320 v40 M214 362 h84"/></g>
+  <rect x="16" y="16" width="480" height="480" rx="108" fill="none" stroke="#10A37F" stroke-width="6"/>
+
+  <!-- microphone: speech capture / transcription -->
+  <g fill="none" stroke-linecap="round">
+    <path d="M182 256 a74 74 0 0 0 148 0" stroke="#02160F" stroke-width="30"/>
+    <path d="M256 330 V372" stroke="#02160F" stroke-width="30"/>
+    <path d="M210 374 H302" stroke="#02160F" stroke-width="30"/>
+    <path d="M182 256 a74 74 0 0 0 148 0" stroke="#10A37F" stroke-width="18"/>
+    <path d="M256 330 V372" stroke="#10A37F" stroke-width="18"/>
+    <path d="M210 374 H302" stroke="#10A37F" stroke-width="18"/>
+  </g>
+  <rect x="212" y="136" width="88" height="160" rx="44" fill="#10A37F" stroke="#02160F" stroke-width="7"/>
+  <g stroke="#02160F" stroke-width="6" stroke-linecap="round">
+    <line x1="228" y1="182" x2="284" y2="182"/>
+    <line x1="228" y1="212" x2="284" y2="212"/>
+    <line x1="228" y1="242" x2="284" y2="242"/>
+  </g>
 </svg>
