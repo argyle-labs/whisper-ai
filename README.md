@@ -4,7 +4,7 @@
 
 # whisper-ai
 
-Whisper speech-to-text — this plugin targets a Wyoming/OpenAI-compatible ASR server.
+Whisper speech-to-text — this plugin targets an OpenAI-compatible ASR webservice.
 
 A first-party [orca](https://github.com/argyle-labs/orca) plugin (service-backend).
 

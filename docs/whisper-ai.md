@@ -2,11 +2,11 @@
 
 Speech-to-text transcription service using OpenAI Whisper (Faster Whisper engine).
 
-**Status:** running — Docker, `10300 -> 9000`
+Deployed as the `onerahmet/openai-whisper-asr-webservice` image, which exposes an
+OpenAI-style HTTP ASR API on port `9000`.
 
-- **Host**: `<host>` (`<ip>`)
-- **Type**: Docker container (on a NAS or Docker host)
-- **Port mapping**: `10300` (host) → `9000` (container)
+- **Type**: Docker/Podman container (on a NAS, Docker host, VM, or nesting-enabled LXC)
+- **Port**: `9000` (container) — map host `9000` → container `9000`
 
 > Whisper AI benefits from iGPU access for acceptable transcription performance. Running it as a Docker container on a host with Intel iGPU access is preferred over a Proxmox LXC.
 
@@ -55,17 +55,17 @@ sed -i "s/main/main contrib non-free non-free-firmware/g" /etc/apt/sources.list
 apt-get update && apt-get install -y intel-media-va-driver-non-free vainfo
 ```
 
-### Step 4 — Install Faster Whisper
+### Step 4 — Run the ASR webservice
+
+Deploy the prebuilt image via Docker inside the LXC (recommended):
 
 ```bash
-pip3 install faster-whisper openai-whisper-asr-webservice
-# or deploy via Docker inside the LXC:
 apt-get install -y docker.io
 systemctl enable --now docker
 docker run -d \
   --name whisper-ai \
   --restart always \
-  -p 8000:8000 \
+  -p 9000:9000 \
   -e ASR_MODEL=base \
   -e ASR_ENGINE=faster_whisper \
   -e ASR_DEVICE=cpu \
@@ -108,7 +108,7 @@ Update your network map / inventory.
 - `POST /asr` — transcribe audio file
 
 ```bash
-curl -X POST http://<host>:8000/asr \
+curl -X POST http://<host>:9000/asr \
   -F "audio_file=@audio.mp3" \
   -F "task=transcribe" \
   -F "language=en"
