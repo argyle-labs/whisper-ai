@@ -1,4 +1,4 @@
-//! whisper-ai service backend — Whisper speech-to-text (Wyoming/ASR).
+//! whisper-ai service backend — Whisper speech-to-text (ASR webservice).
 //!
 //! Implements `ServiceBackend` so the generic `service.*` tools
 //! (deploy/backup/restore/configure/status/connect/sync) drive whisper-ai. No
