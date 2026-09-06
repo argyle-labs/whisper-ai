@@ -1,10 +1,17 @@
 //! Dynamic (subprocess) entrypoint for the whisper-ai plugin.
 //!
-//! The toolkit's `serve_service_plugin!` emits `fn main`, serving this plugin over the orca
-//! socket. The plugin is a
-//! `[[bin]]`, owns no runtime, and reaches orca only through the socket.
-plugin_toolkit::serve_service_plugin! {
-    name: "whisper-ai",
-    target_compat: "any",
-    backend: whisper_ai::WhisperAiBackend::new("whisper-ai"),
+//! A single-facet `service` plugin: the [`Plugin`](plugin_toolkit::plugin::Plugin)
+//! builder registers the [`ServiceBackend`] and emits all the wire dispatch, so
+//! the plugin hand-writes no op strings and owns no runtime — it reaches orca
+//! only through the socket.
+plugin_toolkit::instrument::bootstrap!();
+
+use plugin_toolkit::plugin::Plugin;
+use whisper_ai::WhisperAiBackend;
+
+fn main() -> plugin_toolkit::anyhow::Result<()> {
+    Plugin::named("whisper-ai")
+        .version(env!("CARGO_PKG_VERSION"))
+        .service(WhisperAiBackend::new("whisper-ai"))
+        .serve()
 }
